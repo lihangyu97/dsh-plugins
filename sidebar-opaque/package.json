@@ -1,0 +1,30 @@
+{
+  "name": "@local/dsh-sidebar-opaque",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
+  "description": "去掉 macOS 客户端左侧栏的透明毛玻璃效果，让它在深色和浅色主题下都与对话区背景一致",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "README.md"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true
+    }
+  }
+}

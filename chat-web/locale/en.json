@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Chat Web",
+    "description": "Adds a sidebar entry that opens a chat site (DeepSeek and others) inside the main panel, with a site switcher and custom sites."
+  }
+}

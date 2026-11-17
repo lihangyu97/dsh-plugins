@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Turn Completion Notifications",
+    "description": "Shows a desktop notification with the session topic and the answer excerpt after each turn finishes."
+  }
+}

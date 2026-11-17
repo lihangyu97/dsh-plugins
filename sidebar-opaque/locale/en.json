@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Opaque sidebar",
+    "description": "Removes the translucent window-vibrancy effect from the macOS client sidebar so it uses the same background color as the conversation column, in both light and dark themes."
+  }
+}

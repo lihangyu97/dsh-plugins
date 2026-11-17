@@ -1,0 +1,7 @@
+# 左侧栏入口：点开后主面板内嵌一个聊天网页（DeepSeek 等），支持站点切换与自定义站点。
+#
+# Host 端（index.js）不注册任何模型能力，只作为 bundle 的锚点；
+# 左侧栏图标与主面板都由 client.js 通过 slot 注册。
+- insert:
+    - id: chat-web
+      name: '@local/dsh-chat-web'

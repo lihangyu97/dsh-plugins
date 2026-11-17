@@ -1,0 +1,30 @@
+{
+  "name": "@local/dsh-turn-notify",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
+  "description": "每轮对话结束后的桌面系统通知（会话标题 + 回答摘要），点击通知跳回该会话",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "README.md"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true
+    }
+  }
+}

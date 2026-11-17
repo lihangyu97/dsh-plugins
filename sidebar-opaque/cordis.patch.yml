@@ -1,0 +1,5 @@
+# 左侧栏不透明：macOS 外壳给左栏铺的是「渐变 + color-mix(..., transparent)」，
+# 会透出窗口毛玻璃；Client 端改为铺对话区同一个背景 token，深浅色自动跟随。
+- insert:
+    - id: sidebar-opaque
+      name: '@local/dsh-sidebar-opaque'
