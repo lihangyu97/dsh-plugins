@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Menu bar session counter",
+    "description": "Keeps a whale icon in the macOS menu bar with a live running/finished session count (N/M); clicking it brings DeepSeek Harness to the front. Delegated subagent sessions are not counted."
+  }
+}
