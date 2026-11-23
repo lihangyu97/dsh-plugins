@@ -1,0 +1,27 @@
+# macOS 菜单栏常驻图标：显示「运行中 N / 已完成或待答复 M」，点击唤起 DeepSeek Harness。
+#
+# Host 端折会话事件流，把状态推给一个原生小助手（裸 Swift 可执行文件，不是 .app），
+# 因为没有 AppKit 就拿不到 NSStatusItem，而 Desktop 自带的托盘只在 Windows 上创建。
+#
+# 这一层的 config 就是插件的全部可调项，改完由 Loader 热重载，重启后依旧生效。
+- insert:
+    - id: menubar-status
+      name: '@local/dsh-menubar-status'
+      config:
+        # 总开关。false 时插件激活但不注册监听、也不拉起助手进程。
+        enabled: true
+        # 点击图标要唤起的应用 bundle id。默认就是 Desktop 客户端。
+        bundleId: com.deepseek.dsh
+        # 自定义图标（PNG，建议带 @2x）。留空则用 assets/menubar.png。
+        iconPath: ''
+        # 什么都没有（无运行中、无待处理）时的样子：
+        #   icon   = 只留鲸鱼图标，不占文字宽度（默认）
+        #   count  = 显示 0/0
+        #   hidden = 整个图标先隐藏，出现会话再出现
+        emptyStyle: icon
+        # 会话在「活跃工作集」里保留多久（分钟）。超出窗口且不在运行的会话不再计数，
+        # 所以宿主连开几天也不会把历史会话算成「已完成」。
+        activeWindowMinutes: 120
+        # 有 turn 没结束、但已经多久没有新事件就不再当运行中（分钟）。
+        # 用来滤掉上次退出/崩溃时留下的半截 turn。
+        staleRunningMinutes: 60

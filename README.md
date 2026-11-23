@@ -1,13 +1,14 @@
 # dsh-plugins
 
-给 [DeepSeek Harness](https://github.com/deepseek-ai) 写的一些自用插件，都是 client 插件（`dsh.client.platform = web`），
-装到 desktop / web profile 里生效。
+给 [DeepSeek Harness](https://github.com/deepseek-ai) 写的一些自用插件，装到 desktop / web profile 里生效。
+大部分是 client 插件（`dsh.client.platform = web`），`menubar-status` 是 Host 插件 + 一个原生菜单栏小助手。
 
 | 插件 | 作用 | 版本 |
 | --- | --- | --- |
 | [`chat-web`](./chat-web) | 左侧栏入口 + 常驻内嵌浏览器，直接打开 DeepSeek 等聊天网页版，支持站点切换和自定义站点 | 2.0.0 |
 | [`sidebar-opaque`](./sidebar-opaque) | 去掉 macOS 客户端左侧栏的透明毛玻璃，让左栏和对话区背景一致（深色/浅色都生效） | 1.1.0 |
 | [`turn-notify`](./turn-notify) | 每轮回答结束后弹桌面系统通知（会话标题 + 回答摘要），点击通知跳回该会话 | 1.1.0 |
+| [`menubar-status`](./menubar-status) | macOS 菜单栏常驻鲸鱼图标，显示「运行中 / 已完成+待答复」会话数，点击唤起 App | 1.0.0 |
 
 每个目录都是一个独立插件包（有自己的 `package.json`、`cordis.patch.yml`、`index.js` / `client.js`、`locale/`、`icon.svg`），
 详细能力和实现说明见各目录下的 README。
@@ -24,6 +25,7 @@ cd dsh-plugins
 dsh plugin --profile desktop add link:$PWD/chat-web
 dsh plugin --profile desktop add link:$PWD/sidebar-opaque
 dsh plugin --profile desktop add link:$PWD/turn-notify
+dsh plugin --profile desktop add link:$PWD/menubar-status
 ```
 
 装完把对应的包名加进 profile 的 `dsh.profile.bundles` 里才会被加载，例如 `~/.dsh/profiles/desktop/package.json`：
@@ -44,4 +46,5 @@ dsh plugin --profile desktop add link:$PWD/turn-notify
 
 - 包名统一是 `@local/dsh-*` 且 `private: true`，不打算发 npm，只通过 `link:` 使用。
 - `turn-notify` 的桌面通知依赖 `notifier/` 里的构建脚本，首次使用需要按那个 README 跑一遍。
+- `menubar-status` 的菜单栏图标依赖 `bin/dsh-menubar`（已提交），要重新编译就跑 `./build.sh`（需要 Xcode CLT）。
 - 只在自己机器上验证过 macOS 客户端；Web/GUI 之外的表现没有专门测。
